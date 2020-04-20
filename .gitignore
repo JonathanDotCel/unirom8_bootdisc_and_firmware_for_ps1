@@ -1,0 +1,45 @@
+
+#easier to remember
+headrom.bat
+makerom.bat
+header.bat
+send2.bat
+
+
+#my todo
+notes.txt
+
+#os stuff
+Desktop.ini
+
+#working directories
+/junk/
+/debug/
+/stuff/
+/release_tools/
+.vs/
+Debug/
+
+
+#decompilation research
+/decom*/
+/*decom*/
+
+
+
+#stuff and or things
+*.idb
+*.cpe
+*.map
+*.sym
+*.exe
+*.temp
+*.crunched
+
+stdout.txt
+stderr.txt
+
+#nops dumps
+dump*
+
+
