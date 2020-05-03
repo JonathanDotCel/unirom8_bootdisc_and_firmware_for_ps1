@@ -232,13 +232,13 @@ Credits, thanks & kidney donors in no particular order:
 	// Hah, you think I was going to maintain 2 lists? Copy any changes to readme.md  / flappycredits.c
 	char *credits[] = { 
 		"", "", "",
-		"Doofy", "Nocash <3", "Shendo", "Type 79", "Dax", "Jihad / Hitmen", "Silpheed / Hitmen", "SquareSoft 74" ,
+		"Doofy", "Nocash <3", "Shendo", "Type 79", "Dax", "Jihad / Hitmen", "Silpheed / Hitmen", "SquareSoft74 (no spaces)" ,
 		"Foo Chen Hon", "Shadow / PSXDev", "Matthew Read (lol)", "DanHans / GlitterGirls", "Herben", "JMiller", 
 		"Tim S / Firefly", 	"Rama3",
 		"Padua", "Blackbag", "Napalm", "Paradox / Paradogs :p", "XPlorer Peeps", "K-Comms Peeps",
 		"noisy assholes who recycle...", ".. bottles, one by fucking...", "... one",
-		"barog", "L0ser", "cybdyn", "paul", "Peter Lemon", "Brian Marshall", "Mistamotiel", "tieigo", "orion",
-		"Codeman", "Cat", "LordBlitter", "SurfSmurf",
+		"barog", "L0ser", "cybdyn", "paul", "Peter Lemon", "Brian Marshall", "Mistamotiel", "and Mistamontiel...", "tieigo", "orion",
+		"Codeman", "Cat", "LordBlitter", "SurfSmurf", "kHn",
 		"Everyone at PSXDev!",
 		"Tetley.co.uk", "And absolutely *not*...", "Lameguy64", "lol"	// lol just fucking about, he's helped loads
 	};
@@ -263,5 +263,52 @@ Well wishes:
 
 
 
+Changelog:
 
+8.0.b2 - Exit menu, UI tweaks, FastLoad, etc.
+	- AMD AM29F010 support (0x01,0x20)
+	- Switched boot to R1
+	- Added L1 for FastLoad option
+	- Checksum for Jumping Flash (USA) to force fastboot	
+	- Fixed a visual dual-bank glitch
+	- Roms are now numbered 1->whatever instead of 0->whatver-1
+	- Disabled entry point 0x1F000000 to allow BIOS booting
+	- Exit menu!
+	- Little pulse on the menu highlight
+	- Removed CDROM status (was causing issues)
+	- Fixed an issue with the chip detect locking up writing
+	- fixed some volatile/nonvolatile consistency	
+	- Switched u_long to a defined ulong so visual studio calms down.
+	- More detailed info for XFX 3rd Gen detection
+	- Selected ROM size now shown on the rom loader screen
+	- Added Sanyo LE28C1001 EEPROM support	
+	- The switch works!
+	- Added Squaresoft74's ROM collection to factory restore your cart
+	- Restored support for titles:
+        -Syphon Filter 1-3
+	    -Battle Arena Toshinden (via boot disc)
+	    -Parasite Eve 1
+	    -THPS3 (yaaaas)
+	    -Critical Depth
+	- Fixed broken SIO commands and restored BOOT over SIO	
+	- Fixed a bunch of credits (like so many)
+	- Switched the FastLoad list to an actual list format	
+	- set up a single define for uint, ushort, uchar, etc
+	- now reads unirom_s.rom and unirom_w.rom from the disc directly
+	- removed dosbox from the tools dir (using Orion's cpe2x.exe)
+	- status menu now reports EEPROM size
+	- rom override function - can attempt write by holding R4 + Star
+	- added a watch mode to NoPS
+	- Switched over to Lameguy's mkpsxiso for for quicker iso builds
+
+	TODO:				
+	- Investigate Xploder PRO (Germany) r3.3 petitPRO 1999-08-31 [!] 		
+	- Investigate things hanging on exit
+	- Detect unlock state (19,05) for jap consoles
+	- Check Bug's Life (SCUS-94288) memorycard bug after level 1
+	- Lots of char* vs char[]
+	- Remove a line at a time from the logger
+	- Debug command 19,5 to get license state + Jap console warning	
+	- Look into WithCaetla crashing on Xplorer v1
+	
 
