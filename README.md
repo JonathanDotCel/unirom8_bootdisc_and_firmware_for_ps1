@@ -154,6 +154,7 @@ Building the source:
         The build system is not functional on 64bit machines and I'm not chasing a 
 		moving target (e.g. LameGuy64 has a nice modern SDK, but it's not finished)		
         So c:\psyq\urom\ is hard coded until further notice.
+		If you try to change it, you're going to have a miserable time.
 
 		See the main.c header for much more info.
 		
@@ -229,20 +230,19 @@ Credits, thanks & kidney donors in no particular order:
     ( Give me a nudge to get your github repo or dl page next to your name )
 	
 
-	// Hah, you think I was going to maintain 2 lists? Copy any changes to readme.md  / flappycredits.c
-	char *credits[] = { 
-		"", "", "",
-		"Doofy", "Nocash <3", "Shendo", "Type 79", "Dax", "Jihad / Hitmen", "Silpheed / Hitmen", "SquareSoft 74" ,
-		"Foo Chen Hon", "Shadow / PSXDev", "Matthew Read (lol)", "DanHans / GlitterGirls", "Herben", "JMiller", 
-		"Tim S / Firefly", 	"Rama3",
-		"Padua", "Blackbag", "Napalm", "Paradox / Paradogs :p", "XPlorer Peeps", "K-Comms Peeps",
-		"noisy assholes who recycle...", ".. bottles, one by fucking...", "... one",
-		"barog", "L0ser", "cybdyn", "paul", "Peter Lemon", "Brian Marshall", "Mistamotiel", "tieigo", "orion",
-		"Codeman", "Cat", "LordBlitter", "SurfSmurf",
-		"Everyone at PSXDev!",
-		"Tetley.co.uk", "And absolutely *not*...", "Lameguy64", "lol"	// lol just fucking about, he's helped loads
-	};
-
+char *credits[] = { 
+	"", "", "",
+	"Doofy", "Nocash <3", "Shendo", "Type 79", "Dax", "Jihad / Hitmen", "Silpheed / Hitmen", "SquareSoft74 (no spaces)" ,
+	"Foo Chen Hon", "Shadow / PSXDev", "Matthew Read (lol)", "DanHans / GlitterGirls", "Herben", "and asmblur", "JMiller", 
+	"Tim S / Firefly", 	"rama (any version)",
+	"Padua", "Blackbag", "Napalm", "Paradox / Paradogs :p", "XPlorer Peeps", "K-Comms Peeps",
+	"noisy assholes who recycle...", ".. bottles, one by fucking...", "... one",
+	"barog", "L0ser", "cybdyn", "paul", "Peter Lemon", "and krom", "Brian Marshall", "Mistamotiel", "and Mistamontiel...", "tieigo", "orion",
+	"Codeman", "Cat", "LordBlitter", "SurfSmurf", "kHn", "Nicolas Noble", "r0r0",
+	"Everyone at PSXDev!", 
+	"Tetley.co.uk", "And absolutely *not*...", "Lameguy64", "lol"	// lol just fucking about, he's helped loads
+	// And an extra special thanks to SquareSoft74, DanHans and Nicolas Noble who've been absolute fucking legends with their support and advice!
+};
 
 
 DISCLAIMER:
@@ -263,5 +263,105 @@ Well wishes:
 
 
 
+Changelog:
+
+8.0.b2 - Exit menu, UI tweaks, FastLoad, etc.
+	- AMD AM29F010 support (0x01,0x20)
+	- Switched boot to R1
+	- Added L1 for FastLoad option
+	- Checksum for Jumping Flash (USA) to force fastboot	
+	- Fixed a visual dual-bank glitch
+	- Roms are now numbered 1->whatever instead of 0->whatver-1
+	- Disabled entry point 0x1F000000 to allow BIOS booting
+	- Exit menu!
+	- Little pulse on the menu highlight
+	- Removed CDROM status (was causing issues)
+	- Fixed an issue with the chip detect locking up writing
+	- fixed some volatile/nonvolatile consistency	
+	- Switched u_long to a defined ulong so visual studio calms down.
+	- More detailed info for XFX 3rd Gen detection
+	- Selected ROM size now shown on the rom loader screen
+	- Added Sanyo LE28C1001 EEPROM support	
+	- The switch works!
+	- Added Squaresoft74's ROM collection to factory restore your cart
+	- Restored support for titles:
+        -Syphon Filter 1-3
+	    -Battle Arena Toshinden (via boot disc)
+	    -Parasite Eve 1
+	    -THPS3 (yaaaas)
+	    -Critical Depth
+	- Fixed broken SIO commands and restored BOOT over SIO	
+	- Fixed a bunch of credits (like so many)
+	- Switched the FastLoad list to an actual list format	
+	- set up a single define for uint, ushort, uchar, etc
+	- now reads unirom_s.rom and unirom_w.rom from the disc directly
+	- removed dosbox from the tools dir (using Orion's cpe2x.exe)
+	- status menu now reports EEPROM size
+	- rom override function - can attempt write by holding R4 + Star
+	- added a watch mode to NoPS
+	- Switched over to Lameguy's mkpsxiso for for quicker iso builds
 
 
+8.0.b3	- Internal
+
+8.0.b4 - Stuff and/or things.
+	
+	Features:
+	- 500k serial transfers (Square or add /fast in NoPS)
+	- TTY->SIO redirects to see ingame printfs
+	- Big compatibility fixes
+	- Caetla patched for auto PAL/NTSC
+
+	Experimental:	
+	- Upload/Download during gameplay (L1+Square or /debug in NoPS)
+	- PAL -> NTSC
+
+	Minor:	
+	- Auto reset after EPPROM programming
+	- Auto start when safe loading discs
+	- Hex editor names regions properly		
+	- Removed LIBSIO / LIBGS to save a few KB
+	- Fixed Hex Editor (R1) button	
+	- Changed "Boot" to "Play" on 2nd menu
+	- Tidied a *ton* of source for release	
+	- Converted a bunch of sys calls over to C
+	- Discs with only a PSX.EXE no longer require button press
+	- Tidied many function names
+	- Leaner/Cleaner hook functions (GPU, switch, etc)
+	- Linux support over in NoPS (thanks r0r0!)
+	- Fixed the flickery status screen	
+	- Switched flash code over to KSEG1 (thanks Nicolas!)
+	- Switched boot method to boost compatibility
+	- Switched that to an access hook... lol
+	- Credited Squaresoft74 in the bonus roms menu
+	- Renamed Bonus Roms to rom restoration
+	- Converted more assembly over to C
+	- Loads of new NoPS stuff
+
+
+8.0.b5 - Compat Tweaks!
+	
+	- Fixed CD loading issues introduced in b4
+	- Loads more juicy SIO debug info
+	- Fixed NTSC->PAL support on
+	  - Metal Gear Solid
+	  - Dave Mirra BMX games
+	  - Tony Hawk's Pro Skater 3
+	  - Alone in the Dark
+	  - Destruction Derby 2	  
+	  - The Hooters driving game
+	  - Excalibur225
+	  - Some Hello Kitty game	  
+	- Tidied the linker files
+	- Tidied a bunch of code
+
+
+TODO:				
+	- Investigate Xploder PRO (Germany) r3.3 petitPRO 1999-08-31 [!]
+	
+
+SOURCE TODO:
+	- a bunch more reformatting
+	- cd flush regs consts
+	- remove like so many nops
+	
