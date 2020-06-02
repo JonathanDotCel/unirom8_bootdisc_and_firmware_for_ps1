@@ -266,6 +266,7 @@ Well wishes:
 Changelog:
 
 8.0.b2 - Exit menu, UI tweaks, FastLoad, etc.
+	
 	- AMD AM29F010 support (0x01,0x20)
 	- Switched boot to R1
 	- Added L1 for FastLoad option
