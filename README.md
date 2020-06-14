@@ -33,6 +33,7 @@
 		Rewritten Completely in C!
 		( Much lower bar to entry! )
 
+		General instructions + hidden keys can be found under the install notes.
 
 # Installation
 
@@ -41,7 +42,7 @@
 		Brief: Burn disk to CD, boot it, use the flash option, flash your cart.
 		
         You'll only need the CD one time!
-        - Burn \PSX\UNIROM_BOOTDISC_8.x.CUE with ImgBurn. 1x Speed only.
+        - Burn \PSX\UNIROM_BOOTDISC_8.x.CUE with ImgBurn. Pick the lowest speed on old hardware.
         - Jam your sensor down and do the swap trick to boot the disk if it's not chipped
         ( don't stare at the fucking laser, for fuck's sake don't stare at the fucking laser )
         - Install via CD at the flash menu.
@@ -101,7 +102,7 @@
 	
     "How does it differ from other firmwares?"
 
-	Caetla and Xplorer support cheats but are closed source.
+		Caetla and Xplorer support cheats but are closed source.
 		
         nocash bios is basically a full replacement + nocash unlock + vcd player (closed source)
 
@@ -112,7 +113,7 @@
         
 		Whatever works for you.
 	
-	Can I install Unirom alongside <whatever>
+	Can I install Unirom alongside <whatever>?
 	
 		Caelta: yes
 		XPlorer: possible but not out of the box
@@ -120,7 +121,60 @@
 		Unirom7: possibly but not out of the box. (no memory collisions)
 		NoCash BIOS: no idea!
 
-Troubleshooting!
+
+# Instructions + Hidden keys
+		
+	General:
+	
+		Circle - Exit
+		Triangle - Return to BIOS
+
+	Flashing:
+
+		L1 + L2 - Hold if Unirom doesn't recognise your cart try anyway (128kb)
+		R1 + R2 - Same thing but tells it 256k is fine. (Xplorer carts, etc)
+		Note: No guarantees!
+		
+	Gaming:
+		
+		R1 - Quick Boot (or mash X)
+		L1 + R1 - Boot slowly (good for struggling drives)
+
+	Development:
+		
+		Square = Toggle fast SIO (115200 vs 518400). Same as nops /fast
+		L1 + Square = Enable debug core. Same as nops /debug
+
+	Reserved:
+		
+		L2, Start, Select
+
+# Debug Core
+
+	This is an in-progress feature allowing normal nops functionality during gameplay
+	or while testing your own .exes. Enable it via L1+Square or 'nops /debug'.
+
+	Currently supported:
+	- Call
+	- Jump
+	- Upload Binary
+	- Download Binary
+	- Execute .EXE
+	- Reset
+	- Fast
+	- etc
+
+	Basic use:
+		Put it in debug mode:
+		nops /debug
+
+		Run your homebrew
+		nops /fast /exe myfile.exe
+		
+		Now you can do nops /dump, nops /jump, nops /bin etc while your stuff's running.
+
+
+# Troubleshooting!
 
     Game Not booting? Let me know!
 		Console Model/Region
@@ -141,7 +195,7 @@ Troubleshooting!
 	    
 
 
-Building the source:
+# Building the source:
 
     Build setup.
     
@@ -210,19 +264,20 @@ Building the source:
 		- There's the odd issue with execution from ROM
 		
 
-Folder structure:
+	Folder structure:
 	
-    rom_* = Belongs to the ROM portion, which unpacks the main UniROM_R.exe into RAM
-    exe_* = Belongs to either unirom_r.exe or unirom_s.exe - the version unpacked from the rom or the version on the bootdisc
-    asm_* = assemblies shared by both parts. E.g. CD functions are used by the .exe files AND the ROM
+		rom_* = Belongs to the ROM portion, which unpacks the main UniROM_R.exe into RAM
+		exe_* = Belongs to either unirom_r.exe or unirom_s.exe - the version unpacked from the rom or the version on the bootdisc
+		asm_* = assemblies shared by both parts. E.g. CD functions are used by the .exe files AND the ROM
 
-	The ROM headers:
+		The ROM headers:
 	    
-        rom_standalone.asm - Build this for Unirom 8 on its own
-        rom_withcaetla.asm - Build this for Unirom 8 with Caetla
+			rom_standalone.asm - Build this for Unirom 8 on its own
+			rom_withcaetla.asm - Build this for Unirom 8 with Caetla
 			
-			both will then include rom_shared.asm after that and are the same from there on in.
-			( See above for build procedure );
+				both will then include rom_shared.asm after that and are the same from there on in.
+				( See above for build procedure );
+
 
 
 Credits, thanks & kidney donors in no particular order:
@@ -241,7 +296,7 @@ char *credits[] = {
 	"Codeman", "Cat", "LordBlitter", "SurfSmurf", "kHn", "Nicolas Noble", "r0r0",
 	"Everyone at PSXDev!", 
 	"Tetley.co.uk", "And absolutely *not*...", "Lameguy64", "lol"	// lol just fucking about, he's helped loads
-	// And an extra special thanks to SquareSoft74, DanHans and Nicolas Noble who've been absolute fucking legends with their support and advice!
+	// And an extra special thanks to SquareSoft74, DanHans, Nicolas Noble and Rama who've been absolute fucking legends with their support and advice!
 };
 
 
@@ -266,6 +321,7 @@ Well wishes:
 Changelog:
 
 8.0.b2 - Exit menu, UI tweaks, FastLoad, etc.
+	
 	- AMD AM29F010 support (0x01,0x20)
 	- Switched boot to R1
 	- Added L1 for FastLoad option
@@ -356,12 +412,55 @@ Changelog:
 	- Tidied a bunch of code
 
 
+8.0.b6 - "Minty"
+	
+	Notable Changes:
+	- Custom GPU, CD and Joypad libs.
+	- Lightweight, high-compatibility game loader	
+	- Improved TTY->SIO (more output)
+	- Clearer instructions w/ buton combos
+	- Sexy new font, and toned down colours
+	- SIO spam on load to help users set up
+
+	Debug Core: (In Progress)
+	- You can now use the debug core to keep serial
+	  enabled as you load games or develop homebrew.
+	  Do "nops /debug"
+	  Then the regular NoPS stuff like /exe /dump, etc
+	- Added /exe upload to (in progress) debug core
+	- Added /fast (518400 baud) support to debug core
+  
+	Minor Tweaks:	
+	- Fixed fastbook hooking write and not exec		
+	- Fixed a boot delay (Thanks Rama)
+	- Fixed "Burn at 1x" which was annoying Shadow
+	- Detect + Warn on locked NTSC-J
+	- Fixed jumbled pixels on repeated lines
+	- Fixed a bunch of missing chars
+	- .Exe loading debug @ 0x1F800200
+	
+	Compatibility Fixes:
+	- 40 winks
+	- CTR
+	- Harmful Park	
+	- N20
+	- Rayman 2
+	- Rapid Reload	
+	- Toushinden (Toshinden 4)
+
 TODO:				
-	- Investigate Xploder PRO (Germany) r3.3 petitPRO 1999-08-31 [!]
+	 
+	- Investigate broken emulator support.
+	- Investigate Xploder PRO (Germany) r3.3 petitPRO 1999-08-31 [!]	
+	- Interactive SIO in nops
 	
 
 SOURCE TODO:
 	- a bunch more reformatting
 	- cd flush regs consts
 	- remove like so many nops
+	- document the new 'libs'
 	
+
+
+    
