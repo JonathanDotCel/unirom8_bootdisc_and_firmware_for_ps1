@@ -448,11 +448,25 @@ Changelog:
 	- Rapid Reload	
 	- Toushinden (Toshinden 4)
 
+
+8.0.b7 - SIO Tweaks
+
+	- Removed a wee delay when loading CDs
+	- Tweaked a bunch of CD functions
+	- Set fast sio to 2x stop bits and odd parity
+
+	
+8.0.b8 - Remembery
+
+	- It's not out yet. This is here to be annoying.
+
 TODO:				
 	 
 	- Investigate broken emulator support.
 	- Investigate Xploder PRO (Germany) r3.3 petitPRO 1999-08-31 [!]	
 	- Interactive SIO in nops
+	- Medievil, hilltop level
+	- Metal Gear: Integral
 	
 
 SOURCE TODO:
