@@ -284,19 +284,71 @@ Credits, thanks & kidney donors in no particular order:
     ( Give me a nudge to get your github repo or dl page next to your name )
 	
 
-char *credits[] = { 
-	"", "", "",
-	"Doofy", "Nocash <3", "Shendo", "Type 79", "Dax", "Jihad / Hitmen", "Silpheed / Hitmen", "SquareSoft74 (no spaces)" ,
-	"Foo Chen Hon", "Shadow / PSXDev", "Matthew Read (lol)", "DanHans / GlitterGirls", "Herben", "and asmblur", "JMiller", 
-	"Tim S / Firefly", 	"rama (any version)",
-	"Padua", "Blackbag", "Napalm", "Paradox / Paradogs :p", "XPlorer Peeps", "K-Comms Peeps",
-	"noisy assholes who recycle...", ".. bottles, one by fucking...", "... one",
-	"barog", "L0ser", "cybdyn", "paul", "Peter Lemon", "and krom", "Brian Marshall", "Mistamotiel", "and Mistamontiel...", "tieigo", "orion",
-	"Codeman", "Cat", "LordBlitter", "SurfSmurf", "kHn", "Nicolas Noble", "r0r0",
-	"Everyone at PSXDev!", 
-	"Tetley.co.uk", "And absolutely *not*...", "Lameguy64", "lol"	// lol just fucking about, he's helped loads
-	// And an extra special thanks to SquareSoft74, DanHans, Nicolas Noble and Rama who've been absolute fucking legends with their support and advice!
-};
+static const char * const credits[] = {
+    "",
+    "",
+    "",
+    "Doofy",
+    "Nocash <3",
+    "Shendo",
+    "Type 79",
+    "Dax",
+    "Jihad / Hitmen",
+    "Silpheed / Hitmen",
+    "SquareSoft74 (no spaces)",
+    "Foo Chen Hon",        
+    "DanHans / GlitterGirls",
+    "Herben",
+    "and asmblur",
+    "JMiller",
+    "Tim S / Firefly",
+    "rama (any version)",
+    "Angus McFife XIII",
+    "Padua",
+    "Blackbag",
+    "Napalm",
+    "Paradox / Paradogs :p",
+    "XPlorer Peeps",
+    "K-Comms Peeps",
+    "noisy assholes who recycle...",
+    ".. bottles, one by fucking...",
+    "... one",
+    "barog",
+    "L0ser",
+    "cybdyn",
+    "paul",
+    "Peter Lemon",
+    "and krom",
+    "Brian Marshall",
+    "Mistamotiel",
+    "and Mistamontiel...",
+    "tieigo",
+    "orion",
+    "Codeman",
+    "Cat",
+    "LordBlitter",
+    "SurfSmurf",
+    "Schnappy",
+    "NDR008",
+    "kHn",
+    "Nicolas Noble",
+    "r0r0",
+;    "James-F",
+    "Rich!",
+    "The XStation Testers!",
+    "Trimesh",
+    "Murray Moffat",
+    "xianaix",
+    "ChenThread",
+    "Everyone at PSXDev!",
+    "Tetley.co.uk",
+    "And absolutely *sometimes*...",
+    "Lameguy64",
+    "he's alright"  // he's helped loads
+           // And an extra special thanks to SquareSoft74, DanHans, Nicolas Noble and Rama who've been absolute fucking
+           // legends with their support and advice!
+}
+
 
 
 DISCLAIMER:
@@ -459,6 +511,7 @@ Changelog:
 
 	- It's not out yet. This is here to be annoying.
 
+
 TODO:				
 	 
 	- Investigate broken emulator support.
@@ -466,14 +519,7 @@ TODO:
 	- Interactive SIO in nops
 	- Medievil, hilltop level
 	- Metal Gear: Integral
-	
-
-SOURCE TODO:
-	- a bunch more reformatting
-	- cd flush regs consts
-	- remove like so many nops
-	- document the new 'libs'
+	- Terrence, pls cart.
 	
 
 
-Terrence, pls cart.    
