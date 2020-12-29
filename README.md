@@ -1,4 +1,3 @@
-
 ![](social_card_PNG.png)
 
 
@@ -477,4 +476,4 @@ SOURCE TODO:
 	
 
 
-    
+Terrence, pls cart.    
