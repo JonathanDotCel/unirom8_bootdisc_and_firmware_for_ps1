@@ -1,181 +1,49 @@
 ![](social_card_PNG.png)
 
 
-# New Documentation!
-	
-	Pssst! Wanna peek at the new documentation?
-	https://unirom.github.io/
-
 # Unirom 8
 	
 	Custom Xplorer/Action Replay firmware, bootdisc, import player.
-	github.com/JonathanDotCel
-		
-	Features:
-		
-		Modchip-free booting
-		( nocash unlock or disk swap )
-		
-		ROM flashing
-		( flash from disk or over serial )
-		
-		Serial upload/download tools
-		( +hex editor, open source serial tools, etc )
-		
-		NTSC->PAL switcher
-		( PAL->NTSC is in the works )
-		
-		Cart Cloning
-		( copy to another cart without touching the PC )
-		
-		XFlash compatibility
-		( Can use old XFlash disks )
-		
-		Caetla SxS
-		( Can share a cart with Caetla! )
+    
+	Discord: http://psx.dev
+    Twitter: twitter.com/jonathandotcel
 
-		Rewritten Completely in C!
-		( Much lower bar to entry! )
 
-		General instructions + hidden keys can be found under the install notes.
+# Features:
+
+- Mod-free booting via nocash unlock or disk swap
+- Install to cheat cart (Action Replay/XPlorer, etc)
+- or Memory card via FreePSXBoot (included on the CD)
+- PAL->NTSC and NTSC->PAL soft patching (play imports in colour)
+- Memory card manager
+- File browser
+- ROM backup to/from memory card
+- Launch homebrew from memory card
+- Huge backup ROM set (thanks Squaresoft74 & kHn!)
+- Dualboot with Caetla
+- Serial upload/download tools
+- Kernel-resident SIO (debug games)
+- Exception handler, Hex editor, Card Editor, etc
+- XFlash compatibility
+
 
 # Installation
-
-    To install from CD (No PC):
 		
-		Brief: Burn disk to CD, boot it, use the flash option, flash your cart.
-		
-        You'll only need the CD one time!
-        - Burn \PSX\UNIROM_BOOTDISC_8.x.CUE with ImgBurn. Pick the lowest speed on old hardware.
-        - Jam your sensor down and do the swap trick to boot the disk if it's not chipped
-        ( don't stare at the fucking laser, for fuck's sake don't stare at the fucking laser )
-        - Install via CD at the flash menu.
-		
-        - UNIROM_STANDALONE - just Unirom on the cart
-        - UNIROM_WITHCAETLA - Unirom + Caetla on the one cart [ will need something larger than 128k! ]        
-        - Done
-
-    To install from another cart already running Unirom 8 (No PC):
-		
-		Brief: Hotswap carts and copy the contents to another.
-		
-		Warning: read and fully accept the warning on screen.
-		
-        Boot with the existing cartridge running
-        Select the Clone option
-		Unplug it
-        Plug the new cart in and flash
-        ( You can also boot from one cart, unplug it switch to the other and flash from CD)
-    
-
-    To upgrade a cart running Unirom 4,6,7b, or via PSXSerial:
-		
-        Using nops, temporarily stick the bootdisc version into RAM
-        "nops /oldexe unirom_s.exe COM8" (or whatever COM your serial adapter is on via devmgmt.msc)
-    
-        Now you've got the temporary version, tell it to write to the cart's EEPROM:
-		nops /rom unirom_standalone.rom COM8
-		OR
-		nops /rom unirom_withcaetla.rom COM8
-        
-    Upgrade a cart already running Unirom8
-
-        nops /rom unirom_standalone.rom COM8
-		OR
-		nops /rom unirom_withcaetla.rom COM8
-
-    Upgrade a cart running a Unirom7b beta (Never officially released):
-
-        nops /oldrom unirom_standalone.rom COM8
+    Everything you need to get started is here:
+    e.g. burn it to CD and install it to card or memory card via FreePSXBoot
+    https://unirom.github.io/
 
 
-    "Can I use the parallel port?"		
-        Unirom 8 *currently* has no PIO support but nopp (notpsxpio) is planned. //TODO
-        If you have the Caetla version you can use catflap w/ giveio or whatever over LPT1 though.
-		Or load the XFlash CD and send the bootdisc that way, and as before
-		
-		nops /rom unirom_standalone.rom COM8
-		OR
-		nops /rom unirom_withcaetla.rom COM8
-		
+# Developers:
 
-    
-    "But what if I'm on linux!"	    
-        use mono to launch nops.exe
-	
-	
-    "How does it differ from other firmwares?"
+    Developer Discord:
+    https://psx.dev
 
-		Caetla and Xplorer support cheats but are closed source.
-		
-        nocash bios is basically a full replacement + nocash unlock + vcd player (closed source)
+    NoPS for serial transfer to/from PC:
+    https://github.com/JonathanDotCel/NOTPSXSerial
 
-        n00bROM has some fun features like exception trapper, planned ROM filesystem, is open source but all MIPS asm.
-
-        Unirom8 is has other stuff like import player, XFlash support, complete serial utility, hex editor, open sourced in C.
-		(And can be put on the same cart as Caetla if you still want cheats, etc)
-        
-		Whatever works for you.
-	
-	Can I install Unirom alongside <whatever>?
-	
-		Caelta: yes
-		XPlorer: possible but not out of the box
-		n00bROM: at the time of writing no, but when EXE embedding is ready, yes
-		Unirom7: possibly but not out of the box. (no memory collisions)
-		NoCash BIOS: no idea!
-
-
-# Instructions + Hidden keys
-		
-	General:
-	
-		Circle - Exit
-		Triangle - Return to BIOS
-
-	Flashing:
-
-		L1 + L2 - Hold if Unirom doesn't recognise your cart try anyway (128kb)
-		R1 + R2 - Same thing but tells it 256k is fine. (Xplorer carts, etc)
-		Note: No guarantees!
-		
-	Gaming:
-		
-		R1 - Quick Boot (or mash X)
-		L1 + R1 - Boot slowly (good for struggling drives)
-
-	Development:
-		
-		Square = Toggle fast SIO (115200 vs 518400). Same as nops /fast
-		L1 + Square = Enable debug core. Same as nops /debug
-
-	Reserved:
-		
-		L2, Start, Select
-
-# Debug Core
-
-	This is an in-progress feature allowing normal nops functionality during gameplay
-	or while testing your own .exes. Enable it via L1+Square or 'nops /debug'.
-
-	Currently supported:
-	- Call
-	- Jump
-	- Upload Binary
-	- Download Binary
-	- Execute .EXE
-	- Reset
-	- Fast
-	- etc
-
-	Basic use:
-		Put it in debug mode:
-		nops /debug
-
-		Run your homebrew
-		nops /fast /exe myfile.exe
-		
-		Now you can do nops /dump, nops /jump, nops /bin etc while your stuff's running.
+    FreePSXBoot:
+    https://github.com/brad-lin/FreePSXBoot
 
 
 # Troubleshooting!
@@ -198,183 +66,12 @@
 	    Find me on discord, psxdev.net, github, etc.
 	    
 
-
 # Building the source:
 
-    Build setup.
-    
-        Grab the version of PSQY from PSXDev
-		
-        Install to c:\psyq\
-        Put UniROM in c:\psyq\urom\
-
-        That's really non-negotiable btw.
-        The build system is not functional on 64bit machines and I'm not chasing a 
-		moving target (e.g. LameGuy64 has a nice modern SDK, but it's not finished)		
-        So c:\psyq\urom\ is hard coded until further notice.
-		If you try to change it, you're going to have a miserable time.
-
-		See the main.c header for much more info.
-		
-		"What if I'm on Linux?"
-		    You made your bed, lie in it. WINE or crossover or some buggy shit like that.
-
-    To build the bootisc / .exe
-    
-		Brief:
-			Just a little solo .exe version of UniROM.
-			It doesn't need to be on a cart, you can use it to boot stuff, you can run it from disk
-			you can test it on emulators, you can do whatever. All good.
-		
-		Instructions:		
-			build_bootdisc.bat
-			which creates "unirom_s.exe"
-		
-		
-    To build the .rom
-    
-		Brief:
-			This is the one that goes on the cart.
-			It's a compressed .exe which the .rom decompresses into memory.
-    
-		Instructions:
-			
-			build_inrom.bat
-				creates unirom_r.exe and the compressed version unirom_r.crunch
-				the rom will decompress this from the cartridge into ram at runtime
-		
-			THEN:
-			
-			build_roms.bat
-				creates the rom using unirom_r.crunch:
-				unirom_standalone.rom
-				unirom_withcaetla.rom
-        
-		That's it, just the inrom exe then the rom to put it in.
-        
-		
-    Note:
-        The _bootdisc and _inrom versions load to different addresses and can both be in mem at the same time
-        So it is possible to work on the .exe by sending nops /exe unirom_s.exe COM8 to the rom without
-        having to flash all the time. (See the individual .lnk files for specific addresses)
-
-	Note:
-		"Why does the .exe not run from the cart?"
-		- Don't need to know your C-code entry point
-		- Can compress the .exe
-		- Linker .bss and .sbss sections don't need explicit declarations
-		- IDA will not automatically label functions with a custom crt0/crt1/startup.s
-		- Flashing the ROM while executing from it is a pain
-		- There's the odd issue with execution from ROM
-		
-
-	Folder structure:
-	
-		rom_* = Belongs to the ROM portion, which unpacks the main UniROM_R.exe into RAM
-		exe_* = Belongs to either unirom_r.exe or unirom_s.exe - the version unpacked from the rom or the version on the bootdisc
-		asm_* = assemblies shared by both parts. E.g. CD functions are used by the .exe files AND the ROM
-
-		The ROM headers:
-	    
-			rom_standalone.asm - Build this for Unirom 8 on its own
-			rom_withcaetla.asm - Build this for Unirom 8 with Caetla
-			
-				both will then include rom_shared.asm after that and are the same from there on in.
-				( See above for build procedure );
+    As of 8.0.K the source is being prepped for release!
 
 
-
-Credits, thanks & kidney donors in no particular order:
-    
-    ( Give me a nudge to get your github repo or dl page next to your name )
-	
-
-static const char * const credits[] = {
-    "",
-    "",
-    "",
-    "Doofy",
-    "Nocash <3",
-    "Shendo",
-    "Type 79",
-    "Dax",
-    "Jihad / Hitmen",
-    "Silpheed / Hitmen",
-    "SquareSoft74 (no spaces)",
-    "Foo Chen Hon",        
-    "DanHans / GlitterGirls",
-    "Herben",
-    "and asmblur",
-    "JMiller",
-    "Tim S / Firefly",
-    "rama (any version)",
-    "Angus McFife XIII",
-    "Padua",
-    "Blackbag",
-    "Napalm",
-    "Paradox / Paradogs :p",
-    "XPlorer Peeps",
-    "K-Comms Peeps",
-    "noisy assholes who recycle...",
-    ".. bottles, one by fucking...",
-    "... one",
-    "barog",
-    "L0ser",
-    "cybdyn",
-    "paul",
-    "Peter Lemon",
-    "and krom",
-    "Brian Marshall",
-    "Mistamotiel",
-    "and Mistamontiel...",
-    "tieigo",
-    "orion",
-    "Codeman",
-    "Cat",
-    "LordBlitter",
-    "SurfSmurf",
-    "Schnappy",
-    "NDR008",
-    "kHn",
-    "Nicolas Noble",
-    "r0r0",
-;    "James-F",
-    "Rich!",
-    "The XStation Testers!",
-    "Trimesh",
-    "Murray Moffat",
-    "xianaix",
-    "ChenThread",
-    "Everyone at PSXDev!",
-    "Tetley.co.uk",
-    "And absolutely *sometimes*...",
-    "Lameguy64",
-    "he's alright"  // he's helped loads
-           // And an extra special thanks to SquareSoft74, DanHans, Nicolas Noble and Rama who've been absolute fucking
-           // legends with their support and advice!
-}
-
-
-
-DISCLAIMER:
-    
-    NEITHER I NOR ANYONE INVOLVED IN THE UNIROM PROJECT IS RESPONSIBLE FOR YOUR NEGLIGENCE, LACK OF RESEARCH, LACK OF KNOWLEDGE, OR ACTIONS
-	BROKEN PSX = YOUR FAULT, SHOULD'VE RESEARCHED IT BETTER
-	GONE BLIND = SHOULD NOT HAVE LOOKED AT THE FUCKING LASER
-	
-
-Well wishes:
-	
-	Writing this has kept me sane through more than 6 weeks of Covid 19 symptoms and lockdown.
-	So cheers to everyone doing their bit.
-	
-	Stay safe, wash your hands and protect the NHS, your loved ones, etc.
-	Remember road traffic accidents and tobacco deaths aren't contagious but stupidity and Corona Virus are.
-	No point being a contrarian just for the fucking sake of it.
-
-
-
-Changelog:
+# Changelog:
 
 8.0.b2 - Exit menu, UI tweaks, FastLoad, etc.
 	
@@ -505,26 +202,242 @@ Changelog:
 	- Toushinden (Toshinden 4)
 
 
-8.0.b7 - SIO Tweaks
+8.0.b7 - This update was unlisted.
+
+8.0.b7 EX Alpha Turbo
+	
+	This is a stopgap build fixing some small things before the next major release.
 
 	- Removed a wee delay when loading CDs
 	- Tweaked a bunch of CD functions
-	- Set fast sio to 2x stop bits and odd parity
-
+	- Baud rate fixes for high speed SIO	  
+	- Fixed a confirmed checksum collision during sio upload (ty Nicolas!)
 	
-8.0.b8 - Remembery
+8.0.b7 - 8.0.bB - CD File Browser for ROM/EXE + Basic Hex Preview + Fixes
 
-	- It's not out yet. This is here to be annoying.
+	Recent version summary:
+	- Fixed "Not a double-chip cart"
+	- Fixed a misidentification of one particular cart
+	- Added CD file browser (Memcard coming)
+	- Added a proper dollar to the font
+	- Fixed an off-by-one error loading an extra sector on the file browser
+	- A few tiny tweaks to clean up this release.
+	- Skipped a few versions because 80bB looks fun.
 
 
-TODO:				
-	 
-	- Investigate broken emulator support.
-	- Investigate Xploder PRO (Germany) r3.3 petitPRO 1999-08-31 [!]	
-	- Interactive SIO in nops
-	- Medievil, hilltop level
-	- Metal Gear: Integral
-	- Terrence, pls cart.
+8.0.C
+
+	Big update!
+	- Exception Handler
+	- Self correcting SIO protocol
+	- AR/GS V2 support (with gap)	
+	- PAR3, XP, etc detection + support
+	- New CD routines	
+	- CartDetector + manual cart definition
+
+	Huge thanks to Nicolas Noble for helping with so much, to Squaresoft74 for testing and advice and to Danhans42 for the music he shared with the world (plus some pointers on cart detection techniques).
+
+	Complete:
+	- Fixed some accidental double-bytes in the hex editor
+	- new CD boot routine using file browser
+	- exception handler
+	- nicolas tidied a ton of things up
+	- rewrote the TTY redirect in C
+	- moved IsROM over to the makefile/linker
+	- Tri+ Left/Right/Up/Down for a quick increment in the hex editor
+	- converted ex handler to C
+	- opened up various parts of the memory map to writing
+	- made CD drive properly wait	
+	- Auto cart detection
+	- Datel V2/V3 support
+	- Credit for krHACKen / kHn	
+	- W29EE011 support
+	- SST 39SF020 support
+	- SST 39VF040 support
 	
+		
+8.0.D
+
+    Incremental update - mostly developer/SIO focused.
+    (Implementing step by step GDB debugging)
+
+    Summary:
+    - new NoPS user guide: (https://github.com/JonathanDotCel/NOTPSXSerial)
+    - /poke8, /poke16 and /poke32 commands
+    - /halt and /cont commands
+    - /regs and /setreg commands
+    - /hookread, /hookwrite, /hookexec cop0 breakpoints (SIO /debug)
+    - /exe now works in kernel debug mode
+    - /dump got the V2 protocol stability fixes.
+    - exception handler waits for SIO if kernel /debug running            
+    - improved boot sequence, thanks Rama!
+
+    Complete:
+    - properly applying licenses
+    - Poke8, Poke16 and Poke32 commands in nops
+    - great new pads code, with optional key repeat
+    - random bugfixes here and there
+    - exception handler now pauses if in debug mode
+    - some kernel debug updates
+    - screen blanking before starting a game (Ace Combat 2)
+    - smushed ISO layout around a bit for future xStation support
+    - halt + continue support
+    - simple cop0 breakpoints
+    - switched CD ReadS to ReadN (thanks Rama)
+    - hookread, hookwrite and hookexec functions
+    - upgraded the /dump function to V2 protocol (kernel + usernmode sio)
+    - can now upload /exe in kernel debug mode
 
 
+8.0.Eish
+
+    - Memcard Manager
+    - Memcard dumping/restoration (from nops)
+    - Memcard Pro support
+    - FreePSXBoot installer + Unirom Lite (thanks Bradlin & Nicolas)
+    - Write memcard images from CD
+    - More ROM restoration options (thanks Squaresoft74)
+    - Text colours + navigation improvements
+    - SST EEPROM Fixes (Thanks Schnappy)
+    - AM29F010 should be usable after type detection (Thanks kHn)
+    - Support for Negcon etc 
+    - /slow added to return to 115200 baud (kernel and usermode sio)
+    - /watch memory dump works in kernel debug sio    
+    - .exes may return execution to unirom (thanks Nicolas)
+    - Updated credits    
+    - Brook Adapter fixes (Thanks MCPro Team!)
+    - Name buffer size issue
+    - TCP/SIO bridge for nops
+    - Rewritten nops documentation (especially debugging)
+    - Added Dan's Pong game for a nops sample :)
+    - nops will stop you accidentally flashing an .exe to ROM (thanks Skitchin)
+
+8.0.Fish
+
+    - MCPro Channel/Card controls
+    - Can now properly delete (format) FreePSXBoot cards
+    - BIOS CRC32 from the status screen (Thanks Nicolas!)
+    - Added Dan's pong to the CD! (Easter egg? :p)
+    - Added the Datel V2 (gapped) ROM to the release .zip
+    - Fixed the hex editor address entry
+    - Fixed a bug when auto-listing CD directories
+    - Clearer memcard overwrite warning
+    - Fixed an anomalous "format failed" message.
+    - Added "Format" to memcard context menu
+    - Fixed a missing credit for Skitchin
+
+8.0.G
+
+    - New FreePSXBoot installer screen with QR codes (ty for the idea Nicolas)
+    - Sends UNIROM to MCPro on startup to hold savedata (in the works)
+    - Memcard images are verified when written
+    - Nops will correctly dump REGS when it detects a crash
+    - Updated the credits a bit
+    - Tidied up menus a bit (footers, specifying which disc)    
+    - Warning for 1k 2-card models using FreePSXBoot
+    - Tidied up some more menus, made them cancellable
+    - Fixed broken SIO flashing
+    - Fixed status menu "CD Unlocked"
+    - Moved +MBH, +MC to the status menu
+    - Tidied up the Install screen
+    - Updated Danhans' pong!
+    - Fixed a graphical bug in the memcard manager
+    - Put nops.exe back in the release folder :)
+
+8.0.H
+
+    - Fixed a pointer issue on the FreePSXBoot installer page.
+    
+8.0.I
+
+    - Can now leave FreePSXBoot card in slot 2! (thanks Bradlin)
+    - .ELF upload support
+    - PCDRV support
+    - Able to upload nugget/psyq .exes over themselves.
+    - Fixes bugs in Crisis Beat and Elemental Gearbolt (thanks Nicolas)
+    - Includes Shendo's PS1CardLink (thanks Shendo)
+    - New rom sets! (thanks Squaresoft74 and kHn)
+
+8.0.J
+
+    Features:
+    - Settings menu/saving + Autoboot
+    - Disc identify routine    
+    - Scam memcard detection (512k)
+    - Memcard Hex Editor
+    - Much faster booting (usually)
+    - Sped up the card screen a bit (ty rama)
+    - New documentation! 
+      unirom.github.io  (ty nicolas!)
+    - FreePSXBoot from slot 2 (properly!)
+    - Updated ROMsets (ty Squaresoft74!)
+    Fixes:
+    - Fixed memcard screen rebooting
+    - Hid memcard debug behind L1+R1    
+    - Progress bars on the memcard screen
+    - Fixed a missing SJIS entry (ty nicolas)    
+    - MCPro stability fixes (ty rama)
+    - Card format option for the memcard screen
+    - Nops: specify dump filenames (ty T0fuZ!)    
+    - Nops: can now type into the monitor    
+    - Support for lots of cheap memcards: 
+      Wicareyo, Zedlabz/Assecure, Kafuty,
+      Ruitroliker, GamerGear, etc
+    - Fixed card screen visual glitches
+    - "Partial Deleted Save" on memcard screen
+    - Updated 28FS040
+    - Popup menu colour fix
+    - Warning when flashing with no card inserted
+    - Fixed booting of several games
+    - Fix from J-ish to allow editing empty cards
+    - Indicates which card slot it was booted from    
+    Boot Fixes:
+    - Fix: BattleTanx 2 (mistamontiel)
+    - Fix: Heaven's Gate SLPS-00667 (mistamontiel)
+    - Fix: Crisis Beat (rama)
+
+
+8.0.K
+
+    - GDB debugging via nops/vscode/etc (Thanks Skitchin)
+    - New ROMs including Tonyhax & nocash bios on the CD
+      (Thanks to Squaresoft74, no$, MottZilla & TonyHax peeps!)
+    - Can install FreePSXboot on 64k scam memory cards
+    - Can launch homebrew from memory card (tool included)
+    - Flash ROMs from memcard
+    - Backup ROMs to memcard
+    - Tetris game (to replace flappycredits)
+    - Switch to Caetla 0.38 by default
+    - Longer wait to fix MCPro boot issues
+    - Ability to change the 2nd rom, relabel it, etc (see unirom.github.io)
+    - Static entry point at 0x1F000140 (or 0x1F020140)
+    - Fixed a ton of TTY spam on e.g. Need For Speed (thanks Rama!)
+    - Fixed an issue detecting dual-EEPROM carts introduced in 8.0.J (thanks Square!)
+    - Added an unhook option in uni & nops
+    - Fixed /jmp not working in kernel debug mode
+    - Fixed /cont not working properly when triggered by a `break` instruction
+    - Switched to faster DMA-based CD access (thanks Nicolas & Rama)
+    - Fixed a hook mask issue (Thanks Skitchin)
+    - Beefed up memcard write verification a bit
+    - [nops] `nops /gaps` and `nops /flat` to force datel V2 cart mode on/off
+    - [nops] Longer timeout in sio for shitty wifi connections (thanks Skitchin)
+    - Bishi Bashi working (PAL/NTSC-J)
+    - Kings field working (NTSC/NTSC-J)!
+    - Gundam 2 working (NTSC)
+    - Rayman 2 Working (NTSC)
+    - Rayman 1 broken :o!
+
+
+    TODO:
+    - Default video mode setting
+    - X or O for confirm setting
+    - Check if the getC0table patch is required for the debugmode stuff to actually work?
+    - use the syscall for critical sections
+    - SetSessionSuperUltraCommandSmash()
+        
+    Roadmap:
+    - open source everything
+    - Setsession on disc swap
+    - Cheats
+    - Finish implementing DMA-based CD stuff
+    - make 573 bootable via psx.exe
